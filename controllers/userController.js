@@ -1,8 +1,22 @@
 const userLogin = (req,res)=>{
-    res.send("This user is login")
+    const { email , password} = req.body;
+    
+    res.json({message:`This ${email} is login successful `});
 }
 const userSignup = (req,res)=>{
-    res.send("This user is Sign Up")
+    const {name ,email , password} = req.body;
+    res.json({message:`This ${name} is signup successful `});
 }
 
-export {userLogin , userSignup}
+const userUpdate = (req,res)=>{
+    const userId = req.params.id;
+    const {name,email} = req.body;
+    res.json({message:`user ${userId} is updated to ${name} and ${email}`});
+
+}
+const userDelete = (req,res)=>{
+    const userId = req.params.id;
+    res.json({message:`user ${userId} is deleted`});
+}
+
+export { userLogin, userSignup, userUpdate, userDelete }

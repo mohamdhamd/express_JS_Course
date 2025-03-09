@@ -1,11 +1,25 @@
 
 import express from 'express'
-import {userLogin , userSignup} from '../controllers/userController.js'
+import { userLogin, userSignup, userUpdate, userDelete } from '../controllers/userController.js'
 
 const userRouter = express.Router()
 
-userRouter.get("/login",userLogin)
+userRouter.post("/login", userLogin)
 
-userRouter.get('/signup',userSignup)
+userRouter.post('/signup', userSignup)
 
-export  default userRouter
+// update user
+userRouter.put("/updateUser/:id", userUpdate)
+
+// delete user
+userRouter.delete("/deleteUser/:id", userDelete)
+// multy user paramaters
+userRouter.get("/getUsers/:id([0-9]{5})/:name", (req, res) => {
+    const { id, name } = req.params
+    res.json({
+        id,
+        name
+    })
+})
+
+export default userRouter
